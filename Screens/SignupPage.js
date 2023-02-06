@@ -5,6 +5,9 @@ import { TextInput } from 'react-native-gesture-handler';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+saveDetails = [];
+
 const SignupPage = ({ navigation }) => {
 
     // useState for get Signup Data
@@ -36,7 +39,7 @@ const SignupPage = ({ navigation }) => {
     }
     const checkData2 = () => {
         if (email.length == 0) {
-            Alert.alert('Please Enter Email Address');
+            Alert.alert('Please Enter valid Email Address');
         }
         else { checkData3(password) }
     }
@@ -49,15 +52,32 @@ const SignupPage = ({ navigation }) => {
 
     // store signup data
     const saveData = async () => {
+        saveDetails.push({ name: fullName, email: email, password: password });
         try {
-            await AsyncStorage.setItem('NAME', fullName);
-            await AsyncStorage.setItem('EMAIL', email);
-            await AsyncStorage.setItem('PASSWORD', password);
+            await AsyncStorage.setItem('NAME', JSON.stringify(fullName));
+            await AsyncStorage.setItem('EMAIL', JSON.stringify(email));
+            await AsyncStorage.setItem('PASSWORD', JSON.stringify(password));
+            // console.log(saveDetails);
             navigation.navigate('Login')
+
+            let tempName = []
+            let x = JSON.parse(await AsyncStorage.getItem('NAME'));
+            tempName = x;
+            tempName.map(item => { saveData.push(item) });
+
+            let tempEmail = []
+            let y = JSON.parse(await AsyncStorage.getItem('EMAIL'));
+            tempEmail = y;
+            tempEmail.map(item => { saveData.push(item) });
+
+            let tempPassword = []
+            let z = JSON.parse(await AsyncStorage.getItem('PASSWORD'));
+            tempPassword = z;
+            tempPass.map(item => { saveData.push(item) });
+            saveValue();
         } catch (e) {
         }
     }
-
 
     const isDarkMode = useColorScheme() === 'dark';
     return (

@@ -14,11 +14,11 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerBackTitle: true, headerTransparent: true, headerTitle: ''}}>
-          <Stack.Screen name="Title" component={Title}/>
-        <Stack.Screen name="Login" component={LoginPage} options={{headerLeft: null}} />
-        <Stack.Screen name="Signup" component={Signup}/>
-        <Stack.Screen name="HomePage" component={HomePage}/>
+      <Stack.Navigator screenOptions={{ headerBackTitle: true, headerTransparent: true, headerTitle: '' }}>
+        <Stack.Screen name="Title" component={Title} />
+        <Stack.Screen name="Login" component={LoginPage} options={{ headerLeft: null }} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="HomePage" component={HomePage} />
       </Stack.Navigator>
     </NavigationContainer>
   )
