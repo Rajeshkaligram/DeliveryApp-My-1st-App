@@ -5,13 +5,14 @@ import { TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-
-// const checkData = [];
+// let v = saveDetails.valueOf();
+const checkData = [];
 const LoginPage = ({ navigation }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    checkData.push({ email: email, password: password });
     // validation login data
     const validate = () => {
         if (email.length == 0 && password.length == 0) {
@@ -33,20 +34,10 @@ const LoginPage = ({ navigation }) => {
     }
     // import async storage
     const getDataSync = async () => {
-
-        const mName = JSON.parse(await AsyncStorage.getItem('NAME'));
-
-        const mEmail = JSON.parse(await AsyncStorage.getItem('EMAIL'));
-
-        const mPass = JSON.parse(await AsyncStorage.getItem('PASSWORD'));
-
-        // console.log(mName, mEmail, mPass);
-        // console.log(checkData);
-
         matchData();
     }
     const matchData = () => {
-        if (saveDetails.email === email && saveDetails.password === password) {
+        if (saveDetails.email == checkData.email && saveDetails.password == checkData.password) {
             navigation.navigate('HomePage')
         }
         else { Alert.alert("Wrong email or password") }
@@ -59,8 +50,6 @@ const LoginPage = ({ navigation }) => {
             <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
 
             <View style={styles.containerLogo}>
-                {/* <View><Text>{route.params.saveDetails}</Text></View> */}
-                {/* <View><Text>{isFocused ? 'focused' : 'unfocused'}</Text></View> */}
                 <Image
                     style={styles.logo}
                     source={require('../Image/design1.png')} />
