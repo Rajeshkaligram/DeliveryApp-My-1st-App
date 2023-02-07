@@ -1,18 +1,15 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar, Alert } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-// let v = saveDetails.valueOf();
-const checkData = [];
 const LoginPage = ({ navigation }) => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState([]);
+    const [password, setPassword] = useState([]);
 
-    checkData.push({ email: email, password: password });
     // validation login data
     const validate = () => {
         if (email.length == 0 && password.length == 0) {
@@ -34,15 +31,14 @@ const LoginPage = ({ navigation }) => {
     }
     // import async storage
     const getDataSync = async () => {
-        matchData();
-    }
-    const matchData = () => {
-        if (saveDetails.email == checkData.email && saveDetails.password == checkData.password) {
-            navigation.navigate('HomePage')
-        }
-        else { Alert.alert("Wrong email or password") }
-    }
+        const x = JSON.parse(await AsyncStorage.getItem('SAVE'));
 
+        if (x.some(item => item.email === email) && x.some(item => item.password === password)) {
+            navigation.navigate('HomePage');
+        } else Alert.alert('Please enter Valid email and Password')
+        console.log(x);
+
+    }
 
     const isDarkMode = useColorScheme() === 'dark';
     return (

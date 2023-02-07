@@ -10,6 +10,7 @@ saveDetails = [];
 
 const SignupPage = ({ navigation }) => {
 
+
     // useState for get Signup Data
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -54,27 +55,10 @@ const SignupPage = ({ navigation }) => {
     const saveData = async () => {
         saveDetails.push({ name: fullName, email: email, password: password });
         try {
-            await AsyncStorage.setItem('NAME', JSON.stringify(fullName));
-            await AsyncStorage.setItem('EMAIL', JSON.stringify(email));
-            await AsyncStorage.setItem('PASSWORD', JSON.stringify(password));
-            // console.log(saveDetails);
+            await AsyncStorage.setItem('SAVE', JSON.stringify(saveDetails));
+            Alert.alert('Signup Successful');
+            console.log(saveDetails);
             navigation.navigate('Login')
-
-            let tempName = []
-            let x = JSON.parse(await AsyncStorage.getItem('NAME'));
-            tempName = x;
-            tempName.map(item => { saveData.push(item) });
-
-            let tempEmail = []
-            let y = JSON.parse(await AsyncStorage.getItem('EMAIL'));
-            tempEmail = y;
-            tempEmail.map(item => { saveData.push(item) });
-
-            let tempPassword = []
-            let z = JSON.parse(await AsyncStorage.getItem('PASSWORD'));
-            tempPassword = z;
-            tempPass.map(item => { saveData.push(item) });
-            saveValue();
         } catch (e) {
         }
     }
