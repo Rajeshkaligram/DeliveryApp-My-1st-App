@@ -34,10 +34,9 @@ const LoginPage = ({ navigation }) => {
         const signupData = JSON.parse(await AsyncStorage.getItem('SAVE'));
 
 // matching signup data with login data
-        if (signupData.some(item => item.email === email) && x.some(item => item.password === password)) {
+        if (signupData.some(item => item.email === email) && signupData.some(item => item.password === password)) {
             navigation.navigate('HomePage');
         } else Alert.alert('Please enter Valid email and Password')
-        console.log(x);
 
     }
 
