@@ -26,7 +26,7 @@ const TitlePage = () => {
         <View style={styles.logo_container}>
           <Image
             style={styles.logo}
-            source={require('../Image/logocrop.png')}
+            source={require('../../assets/Image/logocrop.png')}
           />
           <View style={styles.name_container}>
             <Text style={{fontSize: 25, fontWeight: '600'}}>
@@ -64,8 +64,10 @@ const styles = StyleSheet.create({
   },
   name_container: {
     marginTop: 10,
+    color: '#000000',
   },
   order_text: {
     marginTop: 50,
+    color: '#000000',
   },
 });

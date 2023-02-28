@@ -52,7 +52,7 @@ const LoginPage = ({navigation}) => {
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
 
       <View style={styles.containerLogo}>
-        <Image style={styles.logo} source={require('../Image/design1.png')} />
+        <Image style={styles.logo} source={require('../../assets/Image/design1.png')} />
       </View>
       <View>
         <View>
@@ -63,7 +63,7 @@ const LoginPage = ({navigation}) => {
         <View style={styles.form}>
           <Image
             style={styles.Email_Image}
-            source={require('../Image/EmailLogo.png')}
+            source={require('../../assets/icons/EmailLogo.png')}
           />
           <TextInput
             style={styles.input_style}
@@ -79,7 +79,7 @@ const LoginPage = ({navigation}) => {
         <View style={styles.form}>
           <Image
             style={styles.passImage}
-            source={require('../Image/Password.png')}
+            source={require('../../assets/icons/Password.png')}
           />
           <TextInput
             style={styles.input_style}
@@ -108,7 +108,7 @@ const LoginPage = ({navigation}) => {
             <Text style={styles.loginText}>LOGIN</Text>
             <Image
               style={styles.buttonImage}
-              source={require('../Image/RightArrow.png')}
+              source={require('../../assets/icons/RightArrow.png')}
             />
           </TouchableOpacity>
         </View>
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: 30,
     marginBottom: 10,
+    color: '#000000',
   },
   logo: {
     height: 150,
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 30,
     fontWeight: '600',
+    color: '#000000',
   },
   form: {
     marginLeft: 30,
@@ -179,6 +181,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 15,
     flex: 1,
+    color: '#000000',
   },
   loginText: {
     color: '#ffffff',

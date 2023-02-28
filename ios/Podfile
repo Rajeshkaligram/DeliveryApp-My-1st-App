@@ -19,9 +19,7 @@ target 'FirstProject' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'RNCCheckbox', :path => '../node_modules/@react-native-community/checkbox'
 
   target 'FirstProjectTests' do
     inherit! :complete

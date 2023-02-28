@@ -75,7 +75,7 @@ const SignupPage = ({navigation}) => {
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
 
       <View style={styles.containerLogo}>
-        <Image style={styles.logo} source={require('../Image/design1.png')} />
+        <Image style={styles.logo} source={require('../../assets/Image/design1.png')} />
       </View>
       <View>
         <View>
@@ -85,7 +85,7 @@ const SignupPage = ({navigation}) => {
         <View style={styles.form}>
           <Image
             style={styles.name_logo}
-            source={require('../Image/name.png')}
+            source={require('../../assets/icons/name.png')}
           />
           <TextInput
             style={styles.input_style}
@@ -101,7 +101,7 @@ const SignupPage = ({navigation}) => {
         <View style={styles.form}>
           <Image
             style={styles.emailImage}
-            source={require('../Image/EmailLogo.png')}
+            source={require('../../assets/icons/EmailLogo.png')}
           />
           <TextInput
             style={styles.input_style}
@@ -117,7 +117,7 @@ const SignupPage = ({navigation}) => {
         <View style={styles.form}>
           <Image
             style={styles.passImage}
-            source={require('../Image/Password.png')}
+            source={require('../../assets/icons/Password.png')}
           />
           <TextInput
             style={styles.input_style}
@@ -162,7 +162,7 @@ const SignupPage = ({navigation}) => {
               <Text style={styles.loginText}>SIGN UP</Text>
               <Image
                 style={styles.buttonImage}
-                source={require('../Image/RightArrow.png')}
+                source={require('../../assets/icons/RightArrow.png')}
               />
             </TouchableOpacity>
           </View>
