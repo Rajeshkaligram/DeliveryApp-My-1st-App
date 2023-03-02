@@ -28,7 +28,6 @@ const TabBar = () => {
         tabBarInactiveTintColor: '#7B7F85',
         tabBarHideOnKeyboard: true,
       }}>
-      {/* <Tab.Screen name='HomePage12' component={MyTabs}/> */}
       <Tab.Screen
         name="Livechat"
         component={Livechat}
@@ -38,7 +37,7 @@ const TabBar = () => {
             return (
               <Image
                 source={require('../../assets/icons/chat.png')}
-                style={{height: 23, width: 35}}
+                style={{height: 30, width: 45}}
               />
             );
           },
@@ -53,7 +52,7 @@ const TabBar = () => {
             return (
               <Image
                 source={require('../../assets/icons/profile.png')}
-                style={{height: 30, width: 30}}
+                style={{height: 38, width: 35}}
               />
             );
           },
@@ -83,7 +82,7 @@ const TabBar = () => {
             return (
               <Image
                 source={require('../../assets/icons/menu.png')}
-                style={{height: 27, width: 27}}
+                style={{height: 30, width: 27}}
               />
             );
           },
@@ -98,7 +97,7 @@ const TabBar = () => {
             return (
               <Image
                 source={require('../../assets/icons/love.png')}
-                style={{height: 23, width: 23}}
+                style={{height: 28, width: 30}}
               />
             );
           },

@@ -12,10 +12,14 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import {useRoute} from '@react-navigation/native';
 
 const LoginPage = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // const route = useRoute();
+  // const fullName = route.params?.id;
 
   // validation login data
   const validate = () => {
@@ -52,7 +56,10 @@ const LoginPage = ({navigation}) => {
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
 
       <View style={styles.containerLogo}>
-        <Image style={styles.logo} source={require('../../assets/Image/design1.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../../assets/Image/design1.png')}
+        />
       </View>
       <View>
         <View>

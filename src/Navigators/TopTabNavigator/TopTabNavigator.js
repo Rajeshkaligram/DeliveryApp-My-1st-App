@@ -1,22 +1,17 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Animated,
-  Dimensions,
-} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Animated} from 'react-native';
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Meals from '../../Screens/ChildScreen/Meals';
 import Thali from '../../Screens/ChildScreen/Thali';
 import Snacks from '../../Screens/ChildScreen/Snacks';
 import Drinks from '../../Screens/ChildScreen/Drinks';
+// import {useRoute} from '@react-navigation/native';
 
 const TopTab = createMaterialTopTabNavigator();
-const {width} = Dimensions.get('screen');
 
 const MyTabBar = ({state, descriptors, navigation, position}) => {
+  // const route = useRoute();
+  // const fullName = route.params?.id;
   return (
     <View style={{flexDirection: 'row'}}>
       {state.routes.map((route, index) => {
@@ -69,23 +64,28 @@ const MyTabBar = ({state, descriptors, navigation, position}) => {
               alignItems: 'center',
               justifyContent: 'center',
               borderColor: '#CCD1DA',
-              borderWidth: 1,
-              paddingBottom: 5,
+              borderWidth: normalize(1),
+              paddingBottom: normalize(5),
               backgroundColor: isFocused ? '#F1831B' : 'transparent',
-              borderRadius: 10,
-              height: 30,
-              marginHorizontal: 8,
-              marginTop: 10,
-              elevation: 6,
-              shadowColor: '#645F5A',
-              shadowOpacity: 0.2,
-              shadowRadius: 1,
-              shadowOffset: {
-                height: 1,
-                width: 1,
-              },
+              borderRadius: normalize(10),
+              height: normalize(26),
+              marginHorizontal: normalize(8),
+              marginTop: normalize(10),
+              // elevation: normalize(20),
+              // shadowColor: '#645F5A',
+              // shadowOpacity: normalize(0.2),
+              // shadowRadius: normalize(1),
+              // shadowOffset: {
+              //   height: normalize(1),
+              //   width: normalize(1),
+              // },
             }}>
-            <Animated.Text style={{color: '#000000', marginTop: 6}}>
+            <Animated.Text
+              style={{
+                color: isFocused ? '#ffffff' : '#000000',
+                marginTop: 6,
+                fontWeight: 'bold',
+              }}>
               {label}
             </Animated.Text>
           </TouchableOpacity>
@@ -103,6 +103,7 @@ const TopTabNavigator = () => {
   return (
     <TopTab.Navigator
       initialRouteName="Meals"
+      // initialParams={{itemId: fullName}}
       tabBar={props => <MyTabBar {...props} />}>
       <TopTab.Screen name="Meals" component={Meals} />
       <TopTab.Screen name="Thali" component={Thali} />

@@ -65,7 +65,7 @@ const SignupPage = ({navigation}) => {
       await AsyncStorage.setItem('SAVE', JSON.stringify(saveDetails));
       Alert.alert('Signup Successful');
       console.log(saveDetails);
-      navigation.navigate('Login');
+      navigation.navigate('Login',{id: fullName});
     } catch (e) {}
   };
 

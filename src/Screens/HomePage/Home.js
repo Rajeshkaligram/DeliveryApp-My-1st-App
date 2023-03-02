@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useRoute} from '@react-navigation/native';
 import {
   View,
   StyleSheet,
@@ -8,8 +9,11 @@ import {
   SafeAreaView,
 } from 'react-native';
 import TopTabNavigator from '../../Navigators/TopTabNavigator/TopTabNavigator';
+import {Font} from '../../Utils/Theme/Font';
 
 const MenuExample = ({navigation}) => {
+  // const route = useRoute();
+  // const fullName = route.params?.id;
   return (
     <SafeAreaView
       style={[

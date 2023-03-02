@@ -1,8 +1,6 @@
 export const Font = {
-    bold: 'Inter-Bold',
-    extraBold: 'Inter-ExtraBold',
-    extraLight: 'Inter-ExtraLight',
-    medium: 'Inter-Medium',
-    regular: 'Inter-Regular',
-    thin: 'Inter-Thin',
+    bold: 'BeVietnamPro-Bold',
+    extraBold: 'BeVietnamPro-ExtraBold',
+    regular: 'BeVietnamPro-Regular',
+    thin: 'BeVietnamPro-Light',
 }
