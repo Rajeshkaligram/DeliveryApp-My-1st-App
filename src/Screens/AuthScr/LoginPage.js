@@ -8,7 +8,7 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,8 +18,27 @@ const LoginPage = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    try {
+      AsyncStorage.getItem('SAVE').then(value => {
+        if (value != null) {
+          console.log(name);
+          navigation.navigate('HomePage');
+        }
+      });
+    } catch (Error) {
+      console.log(Error);
+    }
+  };
+
   // const route = useRoute();
-  // const fullName = route.params?.id;
+  // const name1 = route.params?.id;
 
   // validation login data
   const validate = () => {
@@ -40,17 +59,19 @@ const LoginPage = ({navigation}) => {
   // import async storage
   const getDataSync = async () => {
     const signupData = JSON.parse(await AsyncStorage.getItem('SAVE'));
+    setName(signupData.name);
 
     // matching signup data with login data
     if (
       signupData.some(item => item.email === email) &&
       signupData.some(item => item.password === password)
     ) {
-      navigation.navigate('HomePage');
+      navigation.navigate('HomePage',{id: name});
     } else Alert.alert('Please enter Valid email and Password');
   };
 
   const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <SafeAreaView style={styles.body}>
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />

@@ -69,7 +69,7 @@ const MyTabBar = ({state, descriptors, navigation, position}) => {
               backgroundColor: isFocused ? '#F1831B' : 'transparent',
               borderRadius: normalize(10),
               height: normalize(26),
-              marginHorizontal: normalize(8),
+              marginHorizontal: normalize(6.5),
               marginTop: normalize(10),
               // elevation: normalize(20),
               // shadowColor: '#645F5A',

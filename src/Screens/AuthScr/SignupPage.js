@@ -14,7 +14,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-saveDetails = [];
+// saveDetails = [];
 
 const SignupPage = ({navigation}) => {
   // useState for get Signup Data
@@ -60,13 +60,20 @@ const SignupPage = ({navigation}) => {
 
   // store signup data
   const saveData = async () => {
-    saveDetails.push({name: fullName, email: email, password: password});
+    // saveDetails.push({name: fullName, email: email, password: password});
     try {
+      var saveDetails = {
+        name: fullName,
+        email: email,
+        password: password,
+      }
       await AsyncStorage.setItem('SAVE', JSON.stringify(saveDetails));
       Alert.alert('Signup Successful');
       console.log(saveDetails);
-      navigation.navigate('Login',{id: fullName});
-    } catch (e) {}
+      navigation.navigate('Login');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const isDarkMode = useColorScheme() === 'dark';

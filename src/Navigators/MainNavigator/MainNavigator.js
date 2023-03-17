@@ -7,12 +7,14 @@ import Signup from '../../Screens/AuthScr/SignupPage';
 import HomePage from '../../Screens/HomePage/Home';
 import Profile from '../../Screens/BottomScr/Profile';
 import Setting from '../../Screens/Setting/Setting';
-import Menu from '../../Screens/ChildScreen/Meals';
+import Menu from '../../Screens/BottomScr/Menu';
 import Favorit from '../../Screens/BottomScr/Favorits';
 import Livechat from '../../Screens/BottomScr/Livechat';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Image} from 'react-native';
+import Cart from '../../Screens/CartScr/Cart';
+// import Header from '../../Components/Header';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -74,7 +76,7 @@ const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name="menu"
+        name="Menu"
         component={Menu}
         options={{
           headerShown: false,
@@ -132,7 +134,10 @@ const NavigationStack = () => {
           options={{headerLeft: null}}
         />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Menu1" component={Menu} options={{headerShown: true, headerBackTitleVisible: false, title: 'Menu'}} />
         <Stack.Screen name="HomePage" component={DrawerN} />
+        <Stack.Screen name="Cart" component={Cart} />
+        {/* <Stack.Screen name="Header" component={Header} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,13 +5,13 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
-  color,
   FlatList,
+  TouchableHighlight,
 } from 'react-native';
 import React from 'react';
 import normalize from '../../Utils/helpers/dimen';
 
-const Meals = () => {
+const Meals = ({ navigation }) => {
   const Menu = [
     {
       key: 1,
@@ -81,11 +81,13 @@ const Meals = () => {
               Only 120/-
             </Text>
             <Text style={{fontSize: 10, color: 'red'}}>(50% off)</Text>
-            <TouchableOpacity style={styles.cart_button}>
+            <Pressable 
+            onPress={()=>navigation.navigate('Cart')}
+            style={styles.cart_button}>
               <Text style={{fontSize: 15, fontWeight: '600', color: '#F1831B'}}>
                 Add to Cart
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -100,7 +102,7 @@ const Meals = () => {
           </Text>
         </View>
         <Pressable
-        // onPress={navigation.navigate('Menu')}
+        onPress={()=>navigation.navigate('Menu1')}
         >
           <Text
             style={[
@@ -120,16 +122,32 @@ const Meals = () => {
       <View style={styles.food_container}>
         <FlatList
           data={Menu}
-          keyExtractor={Menu => Menu.key}
+          keyExtractor={item => item.key}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           renderItem={({item}) => (
-            <View>
-              <View>
-                <Image style={styles.menu_img} source={item.image} />
+            <View style={styles.menu_container}>
+              <View style={{flex: 1}}>
+                <View style={{flex: 0.3, marginTop: 2, alignItems: 'flex-end'}}>
+                  <TouchableHighlight>
+                    <Image
+                      // resizeMode='stretch'
+                      style={styles.fav_button}
+                      source={require('../../assets/icons/heart.png')}
+                    />
+                  </TouchableHighlight>
+                </View>
+                <Image
+                  style={styles.menu_img}
+                  source={item.image}
+                  resizeMode={'contain'}
+                />
               </View>
-              <Text>{item.name}</Text>
-              <Text>{item.price}</Text>
+              <Text style={{color: '#000000'}}>{item.name}</Text>
+              <Text
+                style={{color: '#000000', fontWeight: 'bold', marginBottom: 7}}>
+                {item.price}
+              </Text>
             </View>
           )}
         />
@@ -176,10 +194,32 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   food_container: {
-    marginTop: normalize(20),
+    marginTop: normalize(1),
+  },
+  fav_button: {
+    height: normalize(15),
+    width: normalize(15),
   },
   menu_img: {
     height: normalize(110),
-    width: normalize(115),
+    width: normalize(110),
+  },
+  menu_container: {
+    margin: normalize(5),
+    borderColor: '#CCD1DA',
+    borderWidth: 1,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: normalize(130),
+    height: normalize(150),
+
+    shadowColor: '#645F5A',
+    shadowOpacity: 0.5,
+    shadowRadius: -1,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
   },
 });
