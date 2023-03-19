@@ -35,21 +35,21 @@ const Thali = () => {
     },
     {
       key: 3,
-      image: require('../../assets/Image/thali1.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/dhosa.png'),
+      name: 'Dhosa with sambhar',
+      price: 'RS- 120/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'dosa is crispy and crepe-like and is a very popular street food in India. Dosa is famous for its simple ingredients and savory',
     },
     {
       key: 4,
-      image: require('../../assets/Image/thali1.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/luchi.png'),
+      name: 'Luchi Alurdom Combo',
+      price: 'RS- 80/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Luchi or Bengali style poori is a deep-fried flat bread made of flour or maida and aloor dum',
     },
   ];
   return (

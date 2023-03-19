@@ -18,38 +18,38 @@ const Snacks = () => {
     {
       key: 1,
       image: require('../../assets/Image/pokora.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
-      review: '⭐️⭐️⭐️⭐️',
+      name: 'Chicken Pakora',
+      price: 'RS- 140/-',
+      review: '⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Chicken pakora is a beautifully spiced, The real crispness come from rice flour. And, it is tender, juicy and oh so flavourful within.',
     },
     {
       key: 2,
-      image: require('../../assets/Image/pokora.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/pizza.png'),
+      name: 'Veg Pizza',
+      price: 'RS- 510/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'This pizza recipe is made with the combination of vegetables like broccoli, onion, capsicum, carrot, mushroom and cauliflower',
     },
     {
       key: 3,
-      image: require('../../assets/Image/pokora.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/popcorn.png'),
+      name: 'Chicken Popcorn',
+      price: 'RS- 230/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Popcorn chicken are bite-sized tender and crisp chunks of chicken that have been seasoned.',
     },
     {
       key: 4,
-      image: require('../../assets/Image/pokora.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/combo.png'),
+      name: 'Combo Pack',
+      price: 'RS- 350/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Burger: Minced flavoured chicken patty deep fried and dressed. French Fries: A cut of Julienne potatoes deep fried',
     },
   ];
   return (
@@ -109,7 +109,7 @@ const Snacks = () => {
                       color: '#000000',
                       fontWeight: 'bold',
                       marginBottom: 7,
-                      marginTop: 10,        
+                      marginTop: 10,
                     }}>
                     {item.price}
                   </Text>
@@ -128,6 +128,7 @@ export default Snacks;
 const styles = StyleSheet.create({
   body: {
     flex: 1,
+    marginBottom: 10,
   },
   text_container: {
     marginTop: normalize(10),
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     width: normalize(370),
-    height: normalize(180),
+    height: normalize(188),
     flexDirection: 'row',
     shadowColor: '#645F5A',
     shadowOpacity: 0.5,

@@ -8,6 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import React from 'react';
+import {normalize} from 'react-native-elements';
 
 const Header = ({navigation}) => {
   // const [newObject, setNewObject] = useState(null)
@@ -48,9 +49,63 @@ const Header = ({navigation}) => {
       name: 'Sprite 250ml',
       price: 'RS- 60/-',
     },
+    {
+      key: 7,
+      image: require('../../assets/Image/thali1.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
+      review: '⭐️⭐️⭐️⭐️',
+      description:
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+    },
+    {
+      key: 8,
+      image: require('../../assets/Image/thali2.png'),
+      name: 'Rice Thali',
+      price: 'RS- 230/-',
+      review: '⭐️⭐️⭐️⭐️',
+      description:
+        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+    },
+    {
+      key: 9,
+      image: require('../../assets/Image/coce.png'),
+      name: 'coca cola 250ml',
+      price: 'RS- 60/-',
+    },
+    {
+      key: 10,
+      image: require('../../assets/Image/pepsi.png'),
+      name: 'coca cola 250ml',
+      price: 'RS- 60/-',
+    },
+    {
+      key: 11,
+      image: require('../../assets/Image/fanta.png'),
+      name: 'Fanta 250ml',
+      price: 'RS- 60/-',
+    },
+    {
+      key: 12,
+      image: require('../../assets/Image/combo.png'),
+      name: 'Combo Pack',
+      price: 'RS- 350/-',
+    },
+    {
+      key: 13,
+      image: require('../../assets/Image/luchi.png'),
+      name: 'Luchi Alurdom Combo',
+      price: 'RS- 80/-',
+    },
+    {
+      key: 14,
+      image: require('../../assets/Image/dhosa.png'),
+      name: 'South Indian Dhosa',
+      price: 'RS- 120/-',
+    },
   ];
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.body}>
       <View style={styles.container}>
         <TouchableOpacity
           style={{flexDirection: 'row'}}
@@ -77,14 +132,14 @@ const Header = ({navigation}) => {
           data={Menu}
           keyExtractor={item => item.key}
           numColumns={2}
-          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <View style={styles.menu_container}>
               <View style={{flex: 1}}>
-                <View style={{flex: 0.3, marginTop: 2, alignItems: 'flex-end'}}>
+                <View style={{flex: 0.3, marginTop: 5, alignItems: 'flex-end'}}>
                   <TouchableOpacity>
                     <Image
-                      // resizeMode='stretch'
+                      // resizeMode="stretch"
                       style={styles.fav_button}
                       source={require('../../assets/icons/heart.png')}
                     />
@@ -96,7 +151,9 @@ const Header = ({navigation}) => {
                   resizeMode={'contain'}
                 />
               </View>
-              <Text style={{color: '#000000', fontSize: 17, fontWeight: '400'}}>{item.name}</Text>
+              <Text style={{color: '#000000', fontSize: 17, fontWeight: '400'}}>
+                {item.name}
+              </Text>
               <Text
                 style={{color: '#000000', fontWeight: 'bold', marginBottom: 7}}>
                 {item.price}
@@ -112,6 +169,10 @@ const Header = ({navigation}) => {
 export default Header;
 
 const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    marginBottom: normalize(115),
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -129,14 +190,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     backgroundColor: '#E4E6E8',
+    marginTop: normalize(20),
   },
   fav_button: {
     height: normalize(15),
     width: normalize(15),
   },
   menu_img: {
-    height: normalize(115),
-    width: normalize(115),
+    height: normalize(125),
+    width: normalize(125),
   },
   menu_container: {
     // marginTop: normalize(15),
@@ -146,10 +208,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    width: normalize(140),
-    height: normalize(170),
+    width: normalize(170),
+    height: normalize(180),
     backgroundColor: '#F4F5F7',
-
     shadowColor: '#645F5A',
     shadowOpacity: 0.5,
     shadowRadius: -1,

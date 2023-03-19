@@ -19,34 +19,34 @@ const Drinks = () => {
       price: 'RS- 60/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Sprite is a lemon and lime-flavoured soft drink',
     },
     {
       key: 2,
-      image: require('../../assets/Image/sprite.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/pepsi.png'),
+      name: 'Pepsi 250ml',
+      price: 'RS- 60/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Pepsi is a carbonated soft drink manufactured by PepsiCo',
     },
     {
       key: 3,
-      image: require('../../assets/Image/sprite.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/coce.png'),
+      name: 'Coca Cola 250ml',
+      price: 'RS- 60/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Our companys purpose is to refresh the world and make a difference',
     },
     {
       key: 4,
-      image: require('../../assets/Image/sprite.png'),
-      name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      image: require('../../assets/Image/fanta.png'),
+      name: 'Fanta 250ml',
+      price: 'RS- 60/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Bright, bubbly and popular, Fanta is the soft drink that intensifies fun.',
     },
   ];
   return (
