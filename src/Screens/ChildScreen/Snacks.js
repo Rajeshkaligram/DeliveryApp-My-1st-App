@@ -17,7 +17,7 @@ const Snacks = () => {
   const ThaliMenu = [
     {
       key: 1,
-      image: require('../../assets/Image/biriyani.png'),
+      image: require('../../assets/Image/pokora.png'),
       name: 'Mahraja Thali',
       price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
@@ -26,30 +26,30 @@ const Snacks = () => {
     },
     {
       key: 2,
-      image: require('../../assets/Image/fryrice.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/pokora.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
       key: 3,
-      image: require('../../assets/Image/biriyani.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/pokora.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
       key: 4,
-      image: require('../../assets/Image/fryrice.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/pokora.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
   ];
   return (
@@ -109,7 +109,7 @@ const Snacks = () => {
                       color: '#000000',
                       fontWeight: 'bold',
                       marginBottom: 7,
-                      marginTop: 10,
+                      marginTop: 10,        
                     }}>
                     {item.price}
                   </Text>
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderColor: '#F1831B',
+    margin: 10,
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
@@ -169,5 +170,6 @@ const styles = StyleSheet.create({
     width: 100,
     shadowOpacity: 0.0,
     marginLeft: normalize(25),
+    marginBottom: normalize(10),
   },
 });

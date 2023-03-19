@@ -134,7 +134,11 @@ const NavigationStack = () => {
           options={{headerLeft: null}}
         />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Menu1" component={Menu} options={{headerShown: true, headerBackTitleVisible: false, title: 'Menu'}} />
+        <Stack.Screen
+          name="Menu1"
+          component={Menu}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="HomePage" component={DrawerN} />
         <Stack.Screen name="Cart" component={Cart} />
         {/* <Stack.Screen name="Header" component={Header} /> */}

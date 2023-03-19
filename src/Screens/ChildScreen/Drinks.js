@@ -14,7 +14,16 @@ const Drinks = () => {
   const ThaliMenu = [
     {
       key: 1,
-      image: require('../../assets/Image/biriyani.png'),
+      image: require('../../assets/Image/sprite.png'),
+      name: 'Sprite 250ml',
+      price: 'RS- 60/-',
+      review: '⭐️⭐️⭐️⭐️',
+      description:
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+    },
+    {
+      key: 2,
+      image: require('../../assets/Image/sprite.png'),
       name: 'Mahraja Thali',
       price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
@@ -22,31 +31,22 @@ const Drinks = () => {
         'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
-      key: 2,
-      image: require('../../assets/Image/fryrice.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
-      review: '⭐️⭐️⭐️⭐️',
-      description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
-    },
-    {
       key: 3,
-      image: require('../../assets/Image/biriyani.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/sprite.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
       key: 4,
-      image: require('../../assets/Image/fryrice.png'),
-      name: 'Rice Thali',
-      price: 'RS- 230/-',
+      image: require('../../assets/Image/sprite.png'),
+      name: 'Mahraja Thali',
+      price: 'RS- 520/-',
       review: '⭐️⭐️⭐️⭐️',
       description:
-        'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+        'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
   ];
   return (

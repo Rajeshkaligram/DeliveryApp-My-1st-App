@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
   Pressable,
   FlatList,
   TouchableHighlight,
@@ -11,7 +10,7 @@ import {
 import React from 'react';
 import normalize from '../../Utils/helpers/dimen';
 
-const Meals = ({ navigation }) => {
+const Meals = ({navigation}) => {
   const Menu = [
     {
       key: 1,
@@ -81,9 +80,9 @@ const Meals = ({ navigation }) => {
               Only 120/-
             </Text>
             <Text style={{fontSize: 10, color: 'red'}}>(50% off)</Text>
-            <Pressable 
-            onPress={()=>navigation.navigate('Cart')}
-            style={styles.cart_button}>
+            <Pressable
+              onPress={() => navigation.navigate('Cart')}
+              style={styles.cart_button}>
               <Text style={{fontSize: 15, fontWeight: '600', color: '#F1831B'}}>
                 Add to Cart
               </Text>
@@ -101,9 +100,7 @@ const Meals = ({ navigation }) => {
             Popular Now
           </Text>
         </View>
-        <Pressable
-        onPress={()=>navigation.navigate('Menu1')}
-        >
+        <Pressable onPress={() => navigation.navigate('Menu1')}>
           <Text
             style={[
               styles.text,
@@ -124,6 +121,7 @@ const Meals = ({ navigation }) => {
           data={Menu}
           keyExtractor={item => item.key}
           horizontal={true}
+          // inverted={false}
           showsHorizontalScrollIndicator={false}
           renderItem={({item}) => (
             <View style={styles.menu_container}>
