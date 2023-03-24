@@ -66,7 +66,7 @@ const SignupPage = ({navigation}) => {
         name: fullName,
         email: email,
         password: password,
-      }
+      };
       await AsyncStorage.setItem('SAVE', JSON.stringify(saveDetails));
       Alert.alert('Signup Successful');
       console.log(saveDetails);
@@ -82,7 +82,10 @@ const SignupPage = ({navigation}) => {
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
 
       <View style={styles.containerLogo}>
-        <Image style={styles.logo} source={require('../../assets/Image/design1.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../../assets/Image/design1.png')}
+        />
       </View>
       <View>
         <View>

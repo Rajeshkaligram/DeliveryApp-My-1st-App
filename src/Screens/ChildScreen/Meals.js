@@ -100,7 +100,7 @@ const Meals = ({navigation}) => {
             Popular Now
           </Text>
         </View>
-        <Pressable onPress={() => navigation.navigate('Menu1')}>
+        <Pressable onPress={() => navigation.navigate('Menu')}>
           <Text
             style={[
               styles.text,

@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Text,
   FlatList,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import {normalize} from 'react-native-elements';
@@ -54,7 +55,6 @@ const Header = ({navigation}) => {
       image: require('../../assets/Image/thali1.png'),
       name: 'Mahraja Thali',
       price: 'RS- 520/-',
-      review: '⭐️⭐️⭐️⭐️',
       description:
         'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
@@ -63,7 +63,6 @@ const Header = ({navigation}) => {
       image: require('../../assets/Image/thali2.png'),
       name: 'Rice Thali',
       price: 'RS- 230/-',
-      review: '⭐️⭐️⭐️⭐️',
       description:
         'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
@@ -109,10 +108,10 @@ const Header = ({navigation}) => {
       <View style={styles.container}>
         <TouchableOpacity
           style={{flexDirection: 'row'}}
-          onPress={() => navigation.openDrawer()}>
+          onPress={() => navigation.navigate('HomePage')}>
           <Image
-            style={styles.icon}
-            source={require('../../assets/icons/menubar.png')}
+            style={styles.icon_back}
+            source={require('../../assets/icons/back.png')}
             resizeMode="stretch"
           />
         </TouchableOpacity>
@@ -127,38 +126,58 @@ const Header = ({navigation}) => {
           />
         </TouchableOpacity>
       </View>
+
       <View style={styles.food_container}>
         <FlatList
           data={Menu}
           keyExtractor={item => item.key}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          renderItem={({item}) => (
-            <View style={styles.menu_container}>
-              <View style={{flex: 1}}>
-                <View style={{flex: 0.3, marginTop: 5, alignItems: 'flex-end'}}>
-                  <TouchableOpacity>
-                    <Image
-                      // resizeMode="stretch"
-                      style={styles.fav_button}
-                      source={require('../../assets/icons/heart.png')}
-                    />
-                  </TouchableOpacity>
+          renderItem={({item, index}) => (
+            <TouchableOpacity
+              onPressIn={() => 
+              {
+                if (item.key === 1) {
+                  navigation.navigate('ChickenBiriyani')
+                }
+                else if (item.key === 2) {
+                  navigation.navigate('VegFryRice')
+                }
+              }
+            }
+              key={index.toString()}>
+              <View style={styles.menu_container}>
+                <View style={{flex: 1}}>
+                  <View
+                    style={{flex: 0.3, marginTop: 5, alignItems: 'flex-end'}}>
+                    <TouchableOpacity>
+                      <Image
+                        // resizeMode="stretch"
+                        style={styles.fav_button}
+                        source={require('../../assets/icons/heart.png')}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <Image
+                    style={styles.menu_img}
+                    source={item.image}
+                    resizeMode={'contain'}
+                  />
                 </View>
-                <Image
-                  style={styles.menu_img}
-                  source={item.image}
-                  resizeMode={'contain'}
-                />
+                <Text
+                  style={{color: '#000000', fontSize: 17, fontWeight: '400'}}>
+                  {item.name}
+                </Text>
+                <Text
+                  style={{
+                    color: '#000000',
+                    fontWeight: 'bold',
+                    marginBottom: 7,
+                  }}>
+                  {item.price}
+                </Text>
               </View>
-              <Text style={{color: '#000000', fontSize: 17, fontWeight: '400'}}>
-                {item.name}
-              </Text>
-              <Text
-                style={{color: '#000000', fontWeight: 'bold', marginBottom: 7}}>
-                {item.price}
-              </Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </View>
@@ -180,6 +199,11 @@ const styles = StyleSheet.create({
   icon: {
     height: 40,
     width: 40,
+    marginRight: 10,
+  },
+  icon_back:{
+    height: 37,
+    width: 37,
     marginRight: 10,
   },
   text: {

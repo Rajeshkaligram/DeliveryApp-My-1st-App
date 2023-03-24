@@ -66,7 +66,7 @@ const LoginPage = ({navigation}) => {
       signupData.some(item => item.email === email) &&
       signupData.some(item => item.password === password)
     ) {
-      navigation.navigate('HomePage',{id: name});
+      navigation.navigate('HomePage');
     } else Alert.alert('Please enter Valid email and Password');
   };
 

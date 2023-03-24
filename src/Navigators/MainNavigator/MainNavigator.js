@@ -14,6 +14,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Image} from 'react-native';
 import Cart from '../../Screens/CartScr/Cart';
+import ChickenBiriyani from '../../Screens/MenuScr/ChickenBiriyani';
+import VegFryRice from '../../Screens/MenuScr/VegFryRice';
 // import Header from '../../Components/Header';
 
 const Drawer = createDrawerNavigator();
@@ -134,13 +136,20 @@ const NavigationStack = () => {
           options={{headerLeft: null}}
         />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen
-          name="Menu1"
-          component={Menu}
-          options={{headerShown: false}}
-        />
         <Stack.Screen name="HomePage" component={DrawerN} />
-        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerTitle: 'Your Order',
+            headerTitleStyle: {fontSize: 20},
+            headerTransparent: true,
+          }}
+        />
+        <Stack.Screen name="ChickenBiriyani" component={ChickenBiriyani} />
+        <Stack.Screen name="VegFryRice" component={VegFryRice} />
         {/* <Stack.Screen name="Header" component={Header} /> */}
       </Stack.Navigator>
     </NavigationContainer>
