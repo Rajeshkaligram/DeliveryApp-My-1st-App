@@ -10,7 +10,10 @@ import {
 import React from 'react';
 import {normalize} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart} from '../../Components/NewRedux/CartReducers';
+import {
+  addToCart,
+  removeFromCart,
+} from '../../Components/NewRedux/CartReducers';
 
 const Header = ({navigation}) => {
   const AddedItems = useSelector(state => state);
@@ -121,6 +124,9 @@ const Header = ({navigation}) => {
   const addItemToCart = item => {
     dispatch(addToCart(item));
   };
+  const removeItemFromCart = index => {
+    dispatch(removeFromCart(index));
+  };
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.container}>
@@ -209,19 +215,19 @@ const Header = ({navigation}) => {
                   }}>
                   {'₹' + item.price}
                 </Text>
-                {/* {cart(value => value.id == item.id) ? ( */}
-                {/* <TouchableOpacity
+                {AddedItems.cart.find(value => value.key == item.key) ? (
+                  <TouchableOpacity
                     style={styles.cart_button}
                     onPress={() => removeItemFromCart(item)}>
                     <Text style={styles.button_text}>Remove From Cart</Text>
-                  </TouchableOpacity> */}
-                {/* ) : ( */}
-                <TouchableOpacity
-                  style={styles.cart_button}
-                  onPress={() => addItemToCart(item)}>
-                  <Text style={styles.button_text}>Add To Cart</Text>
-                </TouchableOpacity>
-                {/* )} */}
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.cart_button}
+                    onPress={() => addItemToCart(item)}>
+                    <Text style={styles.button_text}>Add To Cart</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </TouchableOpacity>
           )}

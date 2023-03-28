@@ -19,7 +19,7 @@ const Thali = () => {
       key: 1,
       image: require('../../assets/Image/thali1.png'),
       name: 'Mahraja Thali',
-      price: 'RS- 520/-',
+      price: 520,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
@@ -28,7 +28,7 @@ const Thali = () => {
       key: 2,
       image: require('../../assets/Image/thali2.png'),
       name: 'Rice Thali',
-      price: 'RS- 230/-',
+      price: 230,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
@@ -37,7 +37,7 @@ const Thali = () => {
       key: 3,
       image: require('../../assets/Image/dhosa.png'),
       name: 'Dhosa with sambhar',
-      price: 'RS- 120/-',
+      price: 120,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'dosa is crispy and crepe-like and is a very popular street food in India. Dosa is famous for its simple ingredients and savory',
@@ -45,8 +45,8 @@ const Thali = () => {
     {
       key: 4,
       image: require('../../assets/Image/luchi.png'),
-      name: 'Luchi Alurdom Combo',
-      price: 'RS- 80/-',
+      name: 'Luchi Combo',
+      price: 80,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Luchi or Bengali style poori is a deep-fried flat bread made of flour or maida and aloor dum',
