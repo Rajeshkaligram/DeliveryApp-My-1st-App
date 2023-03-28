@@ -4,12 +4,196 @@ import {
   Text,
   View,
   TouchableOpacity,
+  FlatList,
+  Image,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {removeFromCart} from '../../Components/NewRedux/CartReducers';
 
 const Cart = () => {
+  const item = useSelector(state => state.cart);
+  const dispatch = useDispatch();
+
+  // const Menu = [
+  //   {
+  //     key: 1,
+  //     image: require('../../assets/Image/biriyani.png'),
+  //     name: 'Chicken Biriyani',
+  //     price: 'RS- 210/-',
+  //   },
+  //   {
+  //     key: 2,
+  //     image: require('../../assets/Image/fryrice.png'),
+  //     name: 'Veg FryRice',
+  //     price: 'RS- 150/-',
+  //   },
+  //   {
+  //     key: 3,
+  //     image: require('../../assets/Image/pizza.png'),
+  //     name: 'Veg Pizza',
+  //     price: 'RS- 410/-',
+  //   },
+  //   {
+  //     key: 4,
+  //     image: require('../../assets/Image/pokora.png'),
+  //     name: 'Spicy Chicken Pokora',
+  //     price: 'RS- 250/-',
+  //   },
+  //   {
+  //     key: 5,
+  //     image: require('../../assets/Image/noodles.png'),
+  //     name: 'Spicy Mix Noodles',
+  //     price: 'RS- 250/-',
+  //   },
+  //   {
+  //     key: 6,
+  //     image: require('../../assets/Image/sprite.png'),
+  //     name: 'Sprite 250ml',
+  //     price: 'RS- 60/-',
+  //   },
+  //   {
+  //     key: 7,
+  //     image: require('../../assets/Image/thali1.png'),
+  //     name: 'Mahraja Thali',
+  //     price: 'RS- 520/-',
+  //     description:
+  //       'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+  //   },
+  //   {
+  //     key: 8,
+  //     image: require('../../assets/Image/thali2.png'),
+  //     name: 'Rice Thali',
+  //     price: 'RS- 230/-',
+  //     description:
+  //       'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
+  //   },
+  //   {
+  //     key: 9,
+  //     image: require('../../assets/Image/coce.png'),
+  //     name: 'coca cola 250ml',
+  //     price: 'RS- 60/-',
+  //   },
+  //   {
+  //     key: 10,
+  //     image: require('../../assets/Image/pepsi.png'),
+  //     name: 'coca cola 250ml',
+  //     price: 'RS- 60/-',
+  //   },
+  //   {
+  //     key: 11,
+  //     image: require('../../assets/Image/fanta.png'),
+  //     name: 'Fanta 250ml',
+  //     price: 'RS- 60/-',
+  //   },
+  //   {
+  //     key: 12,
+  //     image: require('../../assets/Image/combo.png'),
+  //     name: 'Combo Pack',
+  //     price: 'RS- 350/-',
+  //   },
+  //   {
+  //     key: 13,
+  //     image: require('../../assets/Image/luchi.png'),
+  //     name: 'Luchi Alurdom Combo',
+  //     price: 'RS- 80/-',
+  //   },
+  //   {
+  //     key: 14,
+  //     image: require('../../assets/Image/dhosa.png'),
+  //     name: 'South Indian Dhosa',
+  //     price: 'RS- 120/-',
+  //   },
+  // ];
+
+  const removeItemFromCart = index => {
+    dispatch(removeFromCart(index));
+  };
   return (
     <SafeAreaView style={styles.body}>
+      {/* <View style={{}}> */}
+      <View style={styles.food_container}>
+        <FlatList
+          data={item}
+          keyExtractor={item => item.key}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item}) => (
+            <ScrollView>
+              {/* <TouchableOpacity key={index.toString()}> */}
+              <View style={styles.menu_container}>
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                  }}>
+                  <Image
+                    style={styles.menu_img}
+                    source={item.image}
+                    resizeMode={'contain'}
+                  />
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontSize: 12,
+                      fontWeight: 'bold',
+                    }}>
+                    {item.name}
+                  </Text>
+                  <View style={styles.inc_button}>
+                    <TouchableOpacity onPress={() => alert('hi')}>
+                      <Text
+                        style={{
+                          margin: 5,
+                          color: '#ffffff',
+                          fontWeight: 'bold',
+                        }}>
+                        -
+                      </Text>
+                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        margin: 5,
+                        color: '#ffffff',
+                        fontWeight: 'bold',
+                      }}>
+                      10
+                    </Text>
+                    <TouchableOpacity>
+                      <Text
+                        style={{
+                          margin: 5,
+                          color: '#ffffff',
+                          fontWeight: 'bold',
+                        }}>
+                        +
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: 'bold',
+                      marginLeft: 10,
+                    }}>
+                    {'₹' + item.price}
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.cart_button}
+                    onPress={() => removeItemFromCart(item)}>
+                    <Image
+                      style={styles.cart_icon}
+                      source={require('../../assets/icons/close.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              {/* </TouchableOpacity> */}
+            </ScrollView>
+          )}
+        />
+      </View>
       <View style={styles.container}>
         <View style={styles.text_container}>
           <View>
@@ -28,6 +212,7 @@ const Cart = () => {
           </TouchableOpacity>
         </View>
       </View>
+      {/* </View> */}
     </SafeAreaView>
   );
 };
@@ -40,10 +225,8 @@ const styles = StyleSheet.create({
     marginTop: normalize(80),
   },
   container: {
-    flex: 1,
-    // justifyContent: 'flex-end',
+    height: '30%',
     backgroundColor: '#ffffff',
-    marginTop: normalize(390),
     borderTopLeftRadius: normalize(25),
     borderTopRightRadius: normalize(25),
     borderBottomColor: '#645F5A',
@@ -58,7 +241,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   text_container: {
-    marginTop: normalize(20),
+    marginTop: normalize(15),
     marginLeft: normalize(15),
     marginRight: normalize(15),
     flexDirection: 'row',
@@ -81,5 +264,58 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: '#ffffff',
+  },
+  food_container: {
+    alignItems: 'center',
+    backgroundColor: '#E4E6E8',
+    height: '70%',
+  },
+  menu_img: {
+    height: normalize(40),
+    width: normalize(40),
+  },
+  menu_container: {
+    justifyContent: 'center',
+    margin: normalize(8),
+    borderColor: '#CCD1DA',
+    borderWidth: 1,
+    borderRadius: 15,
+    width: normalize(300),
+    height: normalize(60),
+    backgroundColor: '#F4F5F7',
+    shadowColor: '#645F5A',
+    shadowOpacity: 0.5,
+    shadowRadius: -1,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
+  },
+  cart_button: {
+    flex: 1,
+    // marginVertical: -70,
+    marginRight: 7,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  cart_icon: {
+    height: 16,
+    width: 16,
+  },
+  button_text: {
+    padding: 5,
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  inc_button: {
+    backgroundColor: '#F1831B',
+    flexDirection: 'row',
+    height: 25,
+    width: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    marginLeft: 20,
   },
 });

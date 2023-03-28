@@ -16,6 +16,9 @@ import {Image} from 'react-native';
 import Cart from '../../Screens/CartScr/Cart';
 import ChickenBiriyani from '../../Screens/MenuScr/ChickenBiriyani';
 import VegFryRice from '../../Screens/MenuScr/VegFryRice';
+import VegPizza from '../../Screens/MenuScr/VegPizza';
+import ChickenPokora from '../../Screens/MenuScr/ChickenPokora';
+import MixNoodles from '../../Screens/MenuScr/MixNoodles'
 // import Header from '../../Components/Header';
 
 const Drawer = createDrawerNavigator();
@@ -150,6 +153,9 @@ const NavigationStack = () => {
         />
         <Stack.Screen name="ChickenBiriyani" component={ChickenBiriyani} />
         <Stack.Screen name="VegFryRice" component={VegFryRice} />
+        <Stack.Screen name="VegPizza" component={VegPizza} />
+        <Stack.Screen name="ChickenPokora" component={ChickenPokora} />
+        <Stack.Screen name="MixNoodles" component={MixNoodles} />
         {/* <Stack.Screen name="Header" component={Header} /> */}
       </Stack.Navigator>
     </NavigationContainer>

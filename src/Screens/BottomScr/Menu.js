@@ -6,13 +6,17 @@ import {
   SafeAreaView,
   Text,
   FlatList,
-  Alert,
 } from 'react-native';
 import React from 'react';
 import {normalize} from 'react-native-elements';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToCart} from '../../Components/NewRedux/CartReducers';
 
 const Header = ({navigation}) => {
-  // const [newObject, setNewObject] = useState(null)
+  const AddedItems = useSelector(state => state);
+  console.log(AddedItems);
+  const dispatch = useDispatch();
+
   const Menu = [
     {
       key: 1,
@@ -35,13 +39,13 @@ const Header = ({navigation}) => {
     {
       key: 4,
       image: require('../../assets/Image/pokora.png'),
-      name: 'Spicy Chicken Pokora',
+      name: 'Chicken Pokora',
       price: 'RS- 250/-',
     },
     {
       key: 5,
       image: require('../../assets/Image/noodles.png'),
-      name: 'Spicy Mix Noodles',
+      name: 'Mix Noodles',
       price: 'RS- 250/-',
     },
     {
@@ -93,16 +97,20 @@ const Header = ({navigation}) => {
     {
       key: 13,
       image: require('../../assets/Image/luchi.png'),
-      name: 'Luchi Alurdom Combo',
+      name: 'Luchi Combo',
       price: 'RS- 80/-',
     },
     {
       key: 14,
       image: require('../../assets/Image/dhosa.png'),
-      name: 'South Indian Dhosa',
+      name: 'Masala Dhosa',
       price: 'RS- 120/-',
     },
   ];
+
+  const addItemToCart = item => {
+    dispatch(addToCart(item));
+  };
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.container}>
@@ -118,12 +126,24 @@ const Header = ({navigation}) => {
         <View style={{justifyContent: 'center'}}>
           <Text style={styles.text}>Our Menu</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Cart')}
+          style={{flexDirection: 'row'}}>
           <Image
             style={styles.icon}
             source={require('../../assets/icons/cart.png')}
             resizeMode="stretch"
           />
+          <Text
+            style={{
+              marginRight: 10,
+              marginTop: 9,
+              fontSize: 18,
+              fontWeight: 'bold',
+              color: '#F80505',
+            }}>
+            {AddedItems.cart.length}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -135,16 +155,19 @@ const Header = ({navigation}) => {
           showsVerticalScrollIndicator={false}
           renderItem={({item, index}) => (
             <TouchableOpacity
-              onPressIn={() => 
-              {
+              onPressIn={() => {
                 if (item.key === 1) {
-                  navigation.navigate('ChickenBiriyani')
+                  navigation.navigate('ChickenBiriyani');
+                } else if (item.key === 2) {
+                  navigation.navigate('VegFryRice');
+                } else if (item.key === 3) {
+                  navigation.navigate('VegPizza');
+                } else if (item.key === 4) {
+                  navigation.navigate('ChickenPokora');
+                } else if (item.key === 5) {
+                  navigation.navigate('MixNoodles');
                 }
-                else if (item.key === 2) {
-                  navigation.navigate('VegFryRice')
-                }
-              }
-            }
+              }}
               key={index.toString()}>
               <View style={styles.menu_container}>
                 <View style={{flex: 1}}>
@@ -174,8 +197,21 @@ const Header = ({navigation}) => {
                     fontWeight: 'bold',
                     marginBottom: 7,
                   }}>
-                  {item.price}
+                  {'₹' + item.price}
                 </Text>
+                {/* {cart(value => value.id == item.id) ? ( */}
+                {/* <TouchableOpacity
+                    style={styles.cart_button}
+                    onPress={() => removeItemFromCart(item)}>
+                    <Text style={styles.button_text}>Remove From Cart</Text>
+                  </TouchableOpacity> */}
+                {/* ) : ( */}
+                <TouchableOpacity
+                  style={styles.cart_button}
+                  onPress={() => addItemToCart(item)}>
+                  <Text style={styles.button_text}>Add To Cart</Text>
+                </TouchableOpacity>
+                {/* )} */}
               </View>
             </TouchableOpacity>
           )}
@@ -199,9 +235,8 @@ const styles = StyleSheet.create({
   icon: {
     height: 40,
     width: 40,
-    marginRight: 10,
   },
-  icon_back:{
+  icon_back: {
     height: 37,
     width: 37,
     marginRight: 10,
@@ -233,7 +268,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: normalize(170),
-    height: normalize(180),
+    height: normalize(210),
     backgroundColor: '#F4F5F7',
     shadowColor: '#645F5A',
     shadowOpacity: 0.5,
@@ -242,5 +277,19 @@ const styles = StyleSheet.create({
       height: 1,
       width: 1,
     },
+  },
+  cart_button: {
+    backgroundColor: '#F1831B',
+    borderRadius: 10,
+    marginBottom: 10,
+    width: normalize(150),
+    height: normalize(30),
+    alignItems: 'center',
+  },
+  button_text: {
+    padding: 5,
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#ffffff',
   },
 });

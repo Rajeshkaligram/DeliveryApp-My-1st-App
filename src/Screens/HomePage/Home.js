@@ -12,13 +12,10 @@ import {
 import TopTabNavigator from '../../Navigators/TopTabNavigator/TopTabNavigator';
 import SearchBar from 'react-native-dynamic-search-bar';
 import Header from '../../Components/Header';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
-// Icon.loadFont();
+import {useSelector} from 'react-redux';
 
 const MenuExample = ({navigation}) => {
-  // const route = useRoute();
-  // const fullName = route.params?.id;
-  // console.log(fullName);
+  const AddItems = useSelector(state => state);
   const [search, setSearch] = useState('');
 
   return (
@@ -41,12 +38,24 @@ const MenuExample = ({navigation}) => {
                 resizeMode="stretch"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Cart')}
+              style={{flexDirection: 'row'}}>
               <Image
                 style={styles.icon}
                 source={require('../../assets/icons/cart.png')}
                 resizeMode="stretch"
               />
+              <Text
+                style={{
+                  marginRight: 10,
+                  marginTop: 9,
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: '#F80505',
+                }}>
+                {AddItems.cart.length}
+              </Text>
             </TouchableOpacity>
           </View>
           {/* <Header/> */}
@@ -111,6 +120,6 @@ const styles = StyleSheet.create({
   icon: {
     height: 40,
     width: 40,
-    marginRight: 10,
+    // marginRight: 10,
   },
 });
