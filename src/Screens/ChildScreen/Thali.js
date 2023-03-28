@@ -4,19 +4,22 @@ import {
   Text,
   View,
   FlatList,
-  Dimensions,
   Image,
   TouchableOpacity,
-  ScrollView,
-  VirtualizedList,
 } from 'react-native';
 import React from 'react';
 import {normalize} from 'react-native-elements';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToCart, removeFromCart} from '../../Components/NewRedux/CartReducers';
 
 const Thali = () => {
+  const AddedItems = useSelector(state => state);
+  // // console.log(AddedItems);
+  const dispatch = useDispatch();
+
   const ThaliMenu = [
     {
-      key: 1,
+      key: 7,
       image: require('../../assets/Image/thali1.png'),
       name: 'Mahraja Thali',
       price: 520,
@@ -25,7 +28,7 @@ const Thali = () => {
         'Maharaja Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
-      key: 2,
+      key: 8,
       image: require('../../assets/Image/thali2.png'),
       name: 'Rice Thali',
       price: 230,
@@ -34,7 +37,7 @@ const Thali = () => {
         'Rice Thali is the best Thali searve with Rice, Roti, Papad, sabji, chatni with sweet',
     },
     {
-      key: 3,
+      key: 14,
       image: require('../../assets/Image/dhosa.png'),
       name: 'Dhosa with sambhar',
       price: 120,
@@ -43,7 +46,7 @@ const Thali = () => {
         'dosa is crispy and crepe-like and is a very popular street food in India. Dosa is famous for its simple ingredients and savory',
     },
     {
-      key: 4,
+      key: 13,
       image: require('../../assets/Image/luchi.png'),
       name: 'Luchi Combo',
       price: 80,
@@ -52,6 +55,12 @@ const Thali = () => {
         'Luchi or Bengali style poori is a deep-fried flat bread made of flour or maida and aloor dum',
     },
   ];
+  const addItemToCart = item => {
+    dispatch(addToCart(item));
+  };
+  const removeItemFromCart = index => {
+    dispatch(removeFromCart(index))
+  };
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.text_container}>
@@ -70,13 +79,23 @@ const Thali = () => {
                   source={item.image}
                   resizeMode={'contain'}
                 />
-                <View style={styles.button}>
-                  <TouchableOpacity>
-                    <Text style={{color: '#F1831B', fontSize: 15}}>
-                      Add to Cart
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                {AddedItems.cart.find(value => value.key == item.key) ? (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => removeItemFromCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Remove Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => addItemToCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Add to Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
               </View>
               <View
                 style={{
@@ -111,7 +130,7 @@ const Thali = () => {
                       marginBottom: 7,
                       marginTop: 10,
                     }}>
-                    {item.price}
+                    {'₹' + item.price + '/-'}
                   </Text>
                 </View>
               </View>

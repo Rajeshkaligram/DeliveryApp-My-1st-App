@@ -17,7 +17,7 @@ import {
 
 const Header = ({navigation}) => {
   const AddedItems = useSelector(state => state);
-  console.log(AddedItems);
+  // console.log(AddedItems);
   const dispatch = useDispatch();
 
   const Menu = [
@@ -87,7 +87,7 @@ const Header = ({navigation}) => {
     {
       key: 10,
       image: require('../../assets/Image/pepsi.png'),
-      name: 'coca cola 250ml',
+      name: 'Pepsi 250ml',
       price: 60,
       qty: 0,
     },
@@ -117,6 +117,20 @@ const Header = ({navigation}) => {
       image: require('../../assets/Image/dhosa.png'),
       name: 'Masala Dhosa',
       price: 120,
+      qty: 0,
+    },
+    {
+      key: 15,
+      image: require('../../assets/Image/burger2.png'),
+      name: 'Yummies Special Burger',
+      price: 120,
+      qty: 0,
+    },
+    {
+      key: 16,
+      image: require('../../assets/Image/popcorn.png'),
+      name: 'Chicken Popcorn',
+      price: 230,
       qty: 0,
     },
   ];

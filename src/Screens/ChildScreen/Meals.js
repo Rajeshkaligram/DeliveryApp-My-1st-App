@@ -10,8 +10,11 @@ import {
 } from 'react-native';
 import React from 'react';
 import normalize from '../../Utils/helpers/dimen';
+import {useDispatch} from 'react-redux';
+import {addToCart} from '../../Components/NewRedux/CartReducers';
 
 const Meals = ({navigation}) => {
+  const dispatch = useDispatch();
   const Burger = [
     {
       key: 15,
@@ -58,6 +61,9 @@ const Meals = ({navigation}) => {
       qty: 0,
     },
   ];
+  const addItemToCart = item => {
+    dispatch(addToCart(item));
+  };
 
   return (
     <View style={{marginTop: normalize(20), flex: 1}}>
@@ -99,11 +105,11 @@ const Meals = ({navigation}) => {
                 </Text>
                 <Text style={{fontSize: 10, color: 'red'}}>(50% off)</Text>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Burger')}
+                  onPress={() => addItemToCart(item)}
                   style={styles.cart_button}>
                   <Text
                     style={{fontSize: 15, fontWeight: '600', color: '#F1831B'}}>
-                    Explore
+                    Add To Cart
                   </Text>
                 </TouchableOpacity>
               </View>

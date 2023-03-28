@@ -9,46 +9,61 @@ import {
 } from 'react-native';
 import React from 'react';
 import {normalize} from 'react-native-elements';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+} from '../../Components/NewRedux/CartReducers';
 
 const Drinks = () => {
+  const AddedItems = useSelector(state => state);
+  // // console.log(AddedItems);
+  const dispatch = useDispatch();
+
   const ThaliMenu = [
     {
-      key: 1,
+      key: 6,
       image: require('../../assets/Image/sprite.png'),
       name: 'Sprite 250ml',
-      price: 'RS- 60/-',
+      price: 60,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Sprite is a lemon and lime-flavoured soft drink',
     },
     {
-      key: 2,
+      key: 10,
       image: require('../../assets/Image/pepsi.png'),
       name: 'Pepsi 250ml',
-      price: 'RS- 60/-',
+      price: 60,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Pepsi is a carbonated soft drink manufactured by PepsiCo',
     },
     {
-      key: 3,
+      key: 9,
       image: require('../../assets/Image/coce.png'),
       name: 'Coca Cola 250ml',
-      price: 'RS- 60/-',
+      price: 60,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Our companys purpose is to refresh the world and make a difference',
     },
     {
-      key: 4,
+      key: 11,
       image: require('../../assets/Image/fanta.png'),
       name: 'Fanta 250ml',
-      price: 'RS- 60/-',
+      price: 60,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Crisp, refreshing and clean-tasting,refreshing and clean-tasting, Bright, bubbly and popular, Fanta is the soft drink that intensifies fun.',
     },
   ];
+  const addItemToCart = item => {
+    dispatch(addToCart(item));
+  };
+  const removeItemFromCart = index => {
+    dispatch(removeFromCart(index));
+  };
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.text_container}>
@@ -67,13 +82,23 @@ const Drinks = () => {
                   source={item.image}
                   resizeMode={'contain'}
                 />
-                <View style={styles.button}>
-                  <TouchableOpacity>
-                    <Text style={{color: '#F1831B', fontSize: 15}}>
-                      Add to Cart
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                {AddedItems.cart.find(value => value.key == item.key) ? (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => removeItemFromCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Remove Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => addItemToCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Add to Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
               </View>
               <View
                 style={{
@@ -108,7 +133,7 @@ const Drinks = () => {
                       marginBottom: 7,
                       marginTop: 10,
                     }}>
-                    {item.price}
+                    {'₹' + item.price + '/-'}
                   </Text>
                 </View>
               </View>

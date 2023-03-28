@@ -12,46 +12,61 @@ import {
 } from 'react-native';
 import React from 'react';
 import {normalize} from 'react-native-elements';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+} from '../../Components/NewRedux/CartReducers';
 
 const Snacks = () => {
+  const AddedItems = useSelector(state => state);
+  // // console.log(AddedItems);
+  const dispatch = useDispatch();
   const ThaliMenu = [
     {
-      key: 1,
+      key: 4,
       image: require('../../assets/Image/pokora.png'),
       name: 'Chicken Pakora',
-      price: 'RS- 140/-',
+      price: 140,
       review: '⭐️⭐️⭐️',
       description:
         'Chicken pakora is a beautifully spiced, The real crispness come from rice flour. And, it is tender, juicy and oh so flavourful within.',
     },
     {
-      key: 2,
+      key: 3,
       image: require('../../assets/Image/pizza.png'),
       name: 'Veg Pizza',
-      price: 'RS- 510/-',
+      price: 510,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'This pizza recipe is made with the combination of vegetables like broccoli, onion, capsicum, carrot, mushroom and cauliflower',
     },
     {
-      key: 3,
+      key: 16,
       image: require('../../assets/Image/popcorn.png'),
       name: 'Chicken Popcorn',
-      price: 'RS- 230/-',
+      price: 230,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Popcorn chicken are bite-sized tender and crisp chunks of chicken that have been seasoned.',
     },
     {
-      key: 4,
+      key: 12,
       image: require('../../assets/Image/combo.png'),
       name: 'Combo Pack',
-      price: 'RS- 350/-',
+      price: 350,
       review: '⭐️⭐️⭐️⭐️',
       description:
         'Burger: Minced flavoured chicken patty deep fried and dressed. French Fries: A cut of Julienne potatoes deep fried',
     },
   ];
+
+  const addItemToCart = item => {
+    dispatch(addToCart(item));
+  };
+  const removeItemFromCart = index => {
+    dispatch(removeFromCart(index));
+  };
   return (
     <SafeAreaView style={styles.body}>
       <View style={styles.text_container}>
@@ -70,13 +85,23 @@ const Snacks = () => {
                   source={item.image}
                   resizeMode={'contain'}
                 />
-                <View style={styles.button}>
-                  <TouchableOpacity>
-                    <Text style={{color: '#F1831B', fontSize: 15}}>
-                      Add to Cart
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                {AddedItems.cart.find(value => value.key == item.key) ? (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => removeItemFromCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Remove Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={() => addItemToCart(item)}>
+                      <Text style={{color: '#F1831B', fontSize: 15}}>
+                        Add to Cart
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
               </View>
               <View
                 style={{
@@ -111,7 +136,7 @@ const Snacks = () => {
                       marginBottom: 7,
                       marginTop: 10,
                     }}>
-                    {item.price}
+                    {'₹' + item.price + '/-'}
                   </Text>
                 </View>
               </View>
