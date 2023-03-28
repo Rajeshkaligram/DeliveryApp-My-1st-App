@@ -10,11 +10,23 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {removeFromCart} from '../../Components/NewRedux/CartReducers';
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
+} from '../../Components/NewRedux/CartReducers';
 
-const Cart = () => {
-  const item = useSelector(state => state.cart);
+const Cart = ({navigation}) => {
+  const AddedItems = useSelector(state => state.cart);
   const dispatch = useDispatch();
+
+  const getTotal = () => {
+    let total = 0;
+    AddedItems.map(item => {
+      total = total + item.qty * item.price;
+    });
+    return total;
+  };
 
   // const Menu = [
   //   {
@@ -110,12 +122,18 @@ const Cart = () => {
   const removeItemFromCart = index => {
     dispatch(removeFromCart(index));
   };
+  const decrease = item => {
+    dispatch(decrementQuantity(item));
+  };
+  const increase = item => {
+    dispatch(incrementQuantity(item));
+  };
   return (
     <SafeAreaView style={styles.body}>
       {/* <View style={{}}> */}
       <View style={styles.food_container}>
         <FlatList
-          data={item}
+          data={AddedItems}
           keyExtractor={item => item.key}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
@@ -136,16 +154,19 @@ const Cart = () => {
                   <Text
                     style={{
                       color: '#000000',
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: 'bold',
+                      width: 100,
+                      marginLeft: 10,
                     }}>
                     {item.name}
                   </Text>
                   <View style={styles.inc_button}>
-                    <TouchableOpacity onPress={() => alert('hi')}>
+                    <TouchableOpacity onPress={() => decrease(item)}>
                       <Text
                         style={{
-                          margin: 5,
+                          fontSize: 20,
+                          fontWeight: 'bold',
                           color: '#ffffff',
                           fontWeight: 'bold',
                         }}>
@@ -154,16 +175,19 @@ const Cart = () => {
                     </TouchableOpacity>
                     <Text
                       style={{
-                        margin: 5,
+                        paddingLeft: 9,
+                        paddingRight: 9,
+                        fontSize: 15,
                         color: '#ffffff',
                         fontWeight: 'bold',
                       }}>
-                      10
+                      {item.qty}
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => increase(item)}>
                       <Text
                         style={{
-                          margin: 5,
+                          fontSize: 17,
+                          fontWeight: 'bold',
                           color: '#ffffff',
                           fontWeight: 'bold',
                         }}>
@@ -175,7 +199,7 @@ const Cart = () => {
                     style={{
                       color: '#000000',
                       fontWeight: 'bold',
-                      marginLeft: 10,
+                      marginLeft: 25,
                     }}>
                     {'₹' + item.price}
                   </Text>
@@ -197,16 +221,21 @@ const Cart = () => {
       <View style={styles.container}>
         <View style={styles.text_container}>
           <View>
-            <Text style={styles.text}>Total Price</Text>
+            <Text style={styles.text}>Total Price:</Text>
           </View>
           <View>
-            <Text>hi</Text>
+            <Text style={styles.text}>{'₹' + getTotal() + ' /-'}</Text>
             <Text style={{color: '#645F5A', fontSize: 11}}>
               Delivery fee not included
             </Text>
           </View>
         </View>
         <View style={{alignItems: 'center'}}>
+          <TouchableOpacity
+            style={styles.button_add_item}
+            onPress={() => navigation.navigate('Menu')}>
+            <Text style={styles.button_text_add}>Add More Items</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.button_text}>Check Out</Text>
           </TouchableOpacity>
@@ -248,8 +277,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: 'bold',
+  },
+  button_add_item: {
+    borderColor: '#F1831B',
+    borderWidth: 3,
+    alignItems: 'center',
+    height: normalize(35),
+    width: normalize(200),
+    justifyContent: 'center',
+    borderRadius: normalize(12),
+    marginTop: normalize(20),
   },
   button: {
     backgroundColor: '#F1831B',
@@ -258,7 +297,12 @@ const styles = StyleSheet.create({
     width: normalize(200),
     justifyContent: 'center',
     borderRadius: normalize(12),
-    marginTop: normalize(40),
+    marginTop: normalize(10),
+  },
+  button_text_add: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#F1831B',
   },
   button_text: {
     fontSize: 15,
@@ -271,8 +315,8 @@ const styles = StyleSheet.create({
     height: '70%',
   },
   menu_img: {
-    height: normalize(40),
-    width: normalize(40),
+    height: normalize(45),
+    width: normalize(45),
   },
   menu_container: {
     justifyContent: 'center',
@@ -312,7 +356,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1831B',
     flexDirection: 'row',
     height: 25,
-    width: 70,
+    width: 75,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,

@@ -5,45 +5,34 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      // const itemInCart = state.find(item => item.id == action.payload.id);
-      // if (itemInCart) {
-      //   itemInCart.quantity++;
-      // } else {
-      //   state.cart.push({...action.payload, quantity: 1});
-      // }
-      state.push(action.payload);
+      const itemInCart = state.find(item => item.key == action.payload.key);
+      if (itemInCart) {
+        itemInCart.qty++;
+      } else {
+        state.push({...action.payload, qty: 1});
+      }
     },
     removeFromCart: (state, action) => {
-      // const removeFromCart = state.cart.filter(
-      //   item => item.id !== action.payload.id,
-      // );
-      // state.cart = removeFromCart;
-      // return state.filter((index) => index.id !== action.payload.id);
-      const index = state.findIndex(item => item.id === action.payload.id);
-      return state.filter((_, i) => i !== index);
-    },
-    screenToCart: (state, action) => {
-      // const itemInCart = state.find(item => item.id == action.payload.id);
-      // if (itemInCart) {
-      //   itemInCart.quantity++;
-      // } else {
-      //   state.cart.push({...action.payload, quantity: 1});
-      // }
-      state.push(action.payload);
+      const removeFromCart = state.filter(
+        item => item.key !== action.payload.key,
+      );
+      state = removeFromCart;
+      return state.filter(index => index.key !== action.payload.key);
     },
     incrementQuantity: (state, action) => {
-      const itemInCart = state.cart.find(item => item.id == action.payload.id);
-      itemInCart.quantity++;
+      const itemInCart = state.find(item => item.key == action.payload.key);
+      itemInCart.qty++;
     },
     decrementQuantity: (state, action) => {
-      const itemInCart = state.cart.find(item => item.id == action.payload.id);
-      if (itemInCart.quantity == 1) {
-        const removeFromCart = state.cart.filter(
-          item => item.id !== action.payload.id,
+      const itemInCart = state.find(item => item.key == action.payload.key);
+      if (itemInCart.qty == 1) {
+        const removeFromCart = state.filter(
+          item => item.key !== action.payload.key,
         );
-        state.cart = removeFromCart;
+        state = removeFromCart;
+        return state.filter(index => index.key !== action.payload.key);
       } else {
-        itemInCart--;
+        itemInCart.qty--;
       }
     },
   },

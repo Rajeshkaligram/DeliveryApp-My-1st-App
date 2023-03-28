@@ -19,7 +19,7 @@ const ChickenBiriyani = ({navigation}) => {
       key: 4,
       image: require('../../assets/Image/pokora.png'),
       name: 'Chicken Pokora',
-      price: 'RS- 250/-',
+      price: 250,
     },
   ];
   const AddItems = useSelector(state => state);
@@ -77,7 +77,7 @@ const ChickenBiriyani = ({navigation}) => {
                 <View style={styles.text_container}>
                   <Text style={styles.text1}>{item.name}</Text>
                   <Text>⭐️⭐️⭐️⭐️(23 rating)</Text>
-                  <Text style={styles.text1}>{item.price}</Text>
+                  <Text style={styles.text1}>{'₹' + item.price}</Text>
                   <View style={{marginTop: 15}}>
                     <Text style={styles.text1}>Description</Text>
                   </View>

@@ -5,42 +5,57 @@ import {
   Image,
   Pressable,
   FlatList,
-  TouchableHighlight,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import normalize from '../../Utils/helpers/dimen';
 
 const Meals = ({navigation}) => {
+  const Burger = [
+    {
+      key: 15,
+      image: require('../../assets/Image/burger.jpg'),
+      name: 'Yummies Special Burger',
+      price: 120,
+      qty: 0,
+    },
+  ];
   const Menu = [
     {
       key: 1,
       image: require('../../assets/Image/biriyani.png'),
       name: 'Chicken Biriyani',
-      price: 'RS- 210/-',
+      price: 210,
+      qty: 0,
     },
     {
       key: 2,
       image: require('../../assets/Image/fryrice.png'),
       name: 'Veg FryRice',
-      price: 'RS- 150/-',
+      price: 150,
+      qty: 0,
     },
     {
       key: 3,
       image: require('../../assets/Image/pizza.png'),
       name: 'Veg Pizza',
-      price: 'RS- 410/-',
+      price: 410,
+      qty: 0,
     },
     {
       key: 4,
       image: require('../../assets/Image/pokora.png'),
-      name: 'Spicy Chicken Pokora',
-      price: 'RS- 250/-',
+      name: 'Chicken Pokora',
+      price: 250,
+      qty: 0,
     },
     {
       key: 5,
       image: require('../../assets/Image/noodles.png'),
-      name: 'Spicy Mix Noodles',
-      price: 'RS- 250/-',
+      name: 'Mix Noodles',
+      price: 250,
+      qty: 0,
     },
   ];
 
@@ -57,38 +72,44 @@ const Meals = ({navigation}) => {
         Today's Special Offer
       </Text>
       <View>
-        <View style={styles.banner}>
-          <Image
-            style={styles.banner_image}
-            source={require('../../assets/Image/burger.jpg')}
-          />
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Text
-              style={{
-                fontSize: 15,
-                margin: normalize(5),
-                fontWeight: '500',
-                marginTop: 15,
-                color: '#000000',
-              }}>
-              Yummies Special Burger
-            </Text>
-            <Text style={{fontSize: 20, fontWeight: '600', color: '#000000'}}>
-              Now
-            </Text>
-            <Text style={{fontSize: 20, fontWeight: '800', color: '#000000'}}>
-              Only 120/-
-            </Text>
-            <Text style={{fontSize: 10, color: 'red'}}>(50% off)</Text>
-            <Pressable
-              onPress={() => navigation.navigate('Cart')}
-              style={styles.cart_button}>
-              <Text style={{fontSize: 15, fontWeight: '600', color: '#F1831B'}}>
-                Add to Cart
-              </Text>
-            </Pressable>
-          </View>
-        </View>
+        <FlatList
+          data={Burger}
+          keyExtractor={item => item.key}
+          renderItem={({item}) => (
+            <View style={styles.banner}>
+              <Image style={styles.banner_image} source={item.image} />
+              <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    margin: normalize(5),
+                    fontWeight: '500',
+                    marginTop: 15,
+                    color: '#000000',
+                  }}>
+                  {item.name}
+                </Text>
+                <Text
+                  style={{fontSize: 20, fontWeight: '600', color: '#000000'}}>
+                  Now
+                </Text>
+                <Text
+                  style={{fontSize: 20, fontWeight: '800', color: '#000000'}}>
+                  {'Only ' + item.price + ' /-'}
+                </Text>
+                <Text style={{fontSize: 10, color: 'red'}}>(50% off)</Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Burger')}
+                  style={styles.cart_button}>
+                  <Text
+                    style={{fontSize: 15, fontWeight: '600', color: '#F1831B'}}>
+                    Explore
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        />
       </View>
       <View style={styles.text_container}>
         <View>
@@ -124,29 +145,51 @@ const Meals = ({navigation}) => {
           // inverted={false}
           showsHorizontalScrollIndicator={false}
           renderItem={({item}) => (
-            <View style={styles.menu_container}>
-              <View style={{flex: 1}}>
-                <View style={{flex: 0.3, marginTop: 2, alignItems: 'flex-end'}}>
-                  <TouchableHighlight>
-                    <Image
-                      // resizeMode='stretch'
-                      style={styles.fav_button}
-                      source={require('../../assets/icons/heart.png')}
-                    />
-                  </TouchableHighlight>
+            <TouchableOpacity
+              onPress={() => {
+                if (item.key == 1) {
+                  navigation.navigate('ChickenBiriyani');
+                } else if (item.key == 2) {
+                  navigation.navigate('VegFryRice');
+                } else if (item.key == 3) {
+                  navigation.navigate('VegPizza');
+                } else if (item.key == 4) {
+                  navigation.navigate('ChickenPokora');
+                } else if (item.key == 5) {
+                  navigation.navigate('MixNoodles');
+                } else {
+                  Alert.alert('Missing Keys');
+                }
+              }}>
+              <View style={styles.menu_container}>
+                <View style={{flex: 1}}>
+                  <View
+                    style={{flex: 0.3, marginTop: 2, alignItems: 'flex-end'}}>
+                    <TouchableOpacity>
+                      <Image
+                        // resizeMode='stretch'
+                        style={styles.fav_button}
+                        source={require('../../assets/icons/heart.png')}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <Image
+                    style={styles.menu_img}
+                    source={item.image}
+                    resizeMode={'contain'}
+                  />
                 </View>
-                <Image
-                  style={styles.menu_img}
-                  source={item.image}
-                  resizeMode={'contain'}
-                />
+                <Text style={{color: '#000000'}}>{item.name}</Text>
+                <Text
+                  style={{
+                    color: '#000000',
+                    fontWeight: 'bold',
+                    marginBottom: 7,
+                  }}>
+                  {'RS: ₹' + item.price + '/-'}
+                </Text>
               </View>
-              <Text style={{color: '#000000'}}>{item.name}</Text>
-              <Text
-                style={{color: '#000000', fontWeight: 'bold', marginBottom: 7}}>
-                {item.price}
-              </Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </View>

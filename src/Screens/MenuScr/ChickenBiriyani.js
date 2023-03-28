@@ -19,7 +19,7 @@ const ChickenBiriyani = ({navigation}) => {
       key: 1,
       image: require('../../assets/Image/biriyani.png'),
       name: 'Chicken Biriyani',
-      price: 'RS- 210/-',
+      price: 210,
     },
   ];
   const AddItems = useSelector(state => state);
@@ -77,7 +77,7 @@ const ChickenBiriyani = ({navigation}) => {
                 <View style={styles.text_container}>
                   <Text style={styles.text1}>{item.name}</Text>
                   <Text>⭐️⭐️⭐️⭐️(23 rating)</Text>
-                  <Text style={styles.text1}>{item.price}</Text>
+                  <Text style={styles.text1}>{'₹' + item.price}</Text>
                   <View style={{marginTop: 15}}>
                     <Text style={styles.text1}>Description</Text>
                   </View>
@@ -89,7 +89,10 @@ const ChickenBiriyani = ({navigation}) => {
                     rich flavor, while the top layer of rice turns out white and
                     fluffy. Buried in the Biryani, you’ll find whole cuts of
                     succulent chicken bursting with flavor from the potent array
-                    of spices, herbs, and aromatics it’s marinated in.
+                    of spices, herbs, and aromatics it’s marinated in.Buried in
+                    the Biryani, you’ll find whole cuts of succulent chicken
+                    bursting with flavor from the potent array of spices, herbs,
+                    and aromatics it’s marinated in.
                   </Text>
                 </View>
               </View>

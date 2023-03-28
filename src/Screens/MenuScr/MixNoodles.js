@@ -19,7 +19,7 @@ import {
       key: 5,
       image: require('../../assets/Image/noodles.png'),
       name: 'Mix Noodles',
-      price: 'RS- 250/-',
+      price: 250,
     },
     ];
     const AddItems = useSelector(state => state);
@@ -77,7 +77,7 @@ import {
                   <View style={styles.text_container}>
                     <Text style={styles.text1}>{item.name}</Text>
                     <Text>⭐️⭐️⭐️⭐️(23 rating)</Text>
-                    <Text style={styles.text1}>{item.price}</Text>
+                    <Text style={styles.text1}>{'₹' + item.price}</Text>
                     <View style={{marginTop: 15}}>
                       <Text style={styles.text1}>Description</Text>
                     </View>

@@ -16,10 +16,11 @@ import {useDispatch, useSelector} from 'react-redux';
 const ChickenBiriyani = ({navigation}) => {
   const Menu = [
     {
-      key: 3,
-      image: require('../../assets/Image/pizza.png'),
-      name: 'Veg Pizza',
-      price: 410,
+      key: 15,
+      image: require('../../assets/Image/burger2.png'),
+      name: 'Yummies Special Burger',
+      price: 120,
+      qty: 0,
     },
   ];
   const AddItems = useSelector(state => state);
