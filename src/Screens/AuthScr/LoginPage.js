@@ -12,63 +12,64 @@ import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useContext} from 'react';
+import {AuthContext} from '../../Context/AuthContext';
 // import {useRoute} from '@react-navigation/native';
 
 const LoginPage = ({navigation}) => {
+  const {Login} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [name, setName] = useState('');
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    try {
-      AsyncStorage.getItem('SAVE').then(value => {
-        if (value != null) {
-          console.log(name);
-          navigation.navigate('HomePage');
-        }
-      });
-    } catch (Error) {
-      console.log(Error);
-    }
-  };
+  // const getData = () => {
+  //   try {
+  //     AsyncStorage.getItem('SAVE').then(value => {
+  //       if (value != null) {
+  //         console.log(name);
+  //         navigation.navigate('HomePage');
+  //       }
+  //     });
+  //   } catch (Error) {
+  //     console.log(Error);
+  //   }
+  // };
 
   // const route = useRoute();
   // const name1 = route.params?.id;
 
   // validation login data
-  const validate = () => {
-    if (email.length == 0 && password.length == 0) {
-      Alert.alert('Please enter email and password');
-    } else checkEmail();
-  };
-  const checkEmail = () => {
-    if (email.length == 0 && email !== undefined) {
-      Alert.alert('Please enter email');
-    } else checkPassword();
-  };
-  const checkPassword = () => {
-    if (password.length == 0) {
-      Alert.alert('Please enter password');
-    } else getDataSync();
-  };
-  // import async storage
-  const getDataSync = async () => {
-    const signupData = JSON.parse(await AsyncStorage.getItem('SAVE'));
-    setName(signupData.name);
+  // const validate = () => {
+  //   if (email.length == 0 && password.length == 0) {
+  //     Alert.alert('Please enter email and password');
+  //   } else checkEmail();
+  // };
+  // const checkEmail = () => {
+  //   if (email.length == 0 && email !== undefined) {
+  //     Alert.alert('Please enter email');
+  //   } else checkPassword();
+  // };
+  // const checkPassword = () => {
+  //   if (password.length == 0) {
+  //     Alert.alert('Please enter password');
+  //   } else getDataSync();
+  // };
+  // // import async storage
+  // const getDataSync = async () => {
+  //   const signupData = JSON.parse(await AsyncStorage.getItem('SAVE'));
+  //   setName(signupData.name);
 
-    // matching signup data with login data
-    if (
-      signupData.some(item => item.email === email) &&
-      signupData.some(item => item.password === password)
-    ) {
-      navigation.navigate('HomePage');
-    } else Alert.alert('Please enter Valid email and Password');
-  };
+  //   // matching signup data with login data
+  //   if (
+  //     signupData.some(item => item.email === email) &&
+  //     signupData.some(item => item.password === password)
+  //   ) {
+  //     navigation.navigate('HomePage');
+  //   } else Alert.alert('Please enter Valid email and Password');
+  // };
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -132,7 +133,7 @@ const LoginPage = ({navigation}) => {
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => validate()}>
+            onPress={() => Login(email,password)}>
             <Text style={styles.loginText}>LOGIN</Text>
             <Image
               style={styles.buttonImage}

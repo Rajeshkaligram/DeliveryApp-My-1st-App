@@ -1,14 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
-import MainNavigator from './src/Navigators/MainNavigator/MainNavigator';
-import {Provider} from 'react-redux';
-import MyStore from './src/Components/NewRedux/store';
+import {AuthProvider} from './src/Context/AuthContext';
+import AppNav from './src/Navigators/AppNav';
 
 const App = () => {
   return (
-    <Provider store={MyStore}>
-      <MainNavigator />
-    </Provider>
+    <AuthProvider>
+      <AppNav />
+    </AuthProvider>
   );
 };
 

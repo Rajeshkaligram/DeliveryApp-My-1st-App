@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Text, View, Image, SafeAreaView, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Title from '../../Screens/AuthScr/TitlePage';
-import Login from '../../Screens/AuthScr/LoginPage';
-import Signup from '../../Screens/AuthScr/SignupPage';
+// import Title from '../../Screens/AuthScr/TitlePage';
+// import Login from '../../Screens/AuthScr/LoginPage';
+// import Signup from '../../Screens/AuthScr/SignupPage';
 import HomePage from '../../Screens/HomePage/Home';
 import Profile from '../../Screens/BottomScr/Profile';
 import Setting from '../../Screens/Setting/Setting';
@@ -12,15 +13,14 @@ import Favorit from '../../Screens/BottomScr/Favorits';
 import Livechat from '../../Screens/BottomScr/Livechat';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Image} from 'react-native';
 import Cart from '../../Screens/CartScr/Cart';
 import ChickenBiriyani from '../../Screens/MenuScr/ChickenBiriyani';
 import VegFryRice from '../../Screens/MenuScr/VegFryRice';
 import VegPizza from '../../Screens/MenuScr/VegPizza';
 import ChickenPokora from '../../Screens/MenuScr/ChickenPokora';
 import MixNoodles from '../../Screens/MenuScr/MixNoodles';
+import {AuthContext} from '../../Context/AuthContext';
 // import Header from '../../Components/Header';
-// import AuthContext from '../../src/Context/AuthContext';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -114,6 +114,7 @@ const TabBar = () => {
     </Tab.Navigator>
   );
 };
+
 const CustomDrawerContent = ({navigation}) => {
   const {LogOut} = useContext(AuthContext);
   return (
@@ -164,7 +165,7 @@ const DrawerN = () => {
       initialRouteName="Home"
       screenOptions={{headerShown: false}}>
       <Drawer.Screen name="Home" component={TabBar} />
-      <Drawer.Screen name="Profile" component={Profile} />
+      {/* <Drawer.Screen name="Profile" component={Profile} /> */}
       <Drawer.Screen name="Setting" component={Setting} />
     </Drawer.Navigator>
   );
@@ -173,16 +174,17 @@ const NavigationStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="HomePage"
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Title" component={Title} />
+        {/* <Stack.Screen name="Title" component={Title} />
         <Stack.Screen
           name="Login"
           component={Login}
           options={{headerLeft: null}}
         />
-        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Signup" component={Signup} /> */}
         <Stack.Screen name="HomePage" component={DrawerN} />
         <Stack.Screen
           name="Cart"
@@ -200,7 +202,6 @@ const NavigationStack = () => {
         <Stack.Screen name="VegPizza" component={VegPizza} />
         <Stack.Screen name="ChickenPokora" component={ChickenPokora} />
         <Stack.Screen name="MixNoodles" component={MixNoodles} />
-        {/* <Stack.Screen name="AuthContext" component={AuthContext} /> */}
         {/* <Stack.Screen name="Header" component={Header} /> */}
       </Stack.Navigator>
     </NavigationContainer>

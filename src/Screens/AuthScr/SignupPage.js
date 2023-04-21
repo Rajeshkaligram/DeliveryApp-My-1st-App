@@ -8,75 +8,25 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// saveDetails = [];
+import {AuthContext} from '../../Context/AuthContext';
 
 const SignupPage = ({navigation}) => {
   // useState for get Signup Data
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [check, setCheck] = useState(false);
-
-  // sign up data validation
-  const submit = () => {
-    if (fullName.length == 0 && email.length == 0 && password.length == 0) {
-      Alert.alert('Please filled all the fields');
-    } else {
-      checkData(fullName);
-    }
-  };
-  const checkData = e => {
-    let rjx = /^[a-zA-Z" "]+$/;
-    if (!rjx.test(e)) {
-      Alert.alert('enter valid name');
-    } else checkData1(fullName);
-  };
-  const checkData1 = () => {
-    if (fullName.length == 0) {
-      Alert.alert('Please Enter Full Name');
-    } else {
-      checkData2(email);
-    }
-  };
-  const checkData2 = () => {
-    if (email.length == 0) {
-      Alert.alert('Please Enter valid Email Address');
-    } else {
-      checkData3(password);
-    }
-  };
-  const checkData3 = () => {
-    if (password.length == 0) {
-      Alert.alert('Please filled in Password');
-    } else saveData();
-  };
-
-  // store signup data
-  const saveData = async () => {
-    // saveDetails.push({name: fullName, email: email, password: password});
-    try {
-      var saveDetails = {
-        name: fullName,
-        email: email,
-        password: password,
-      };
-      await AsyncStorage.setItem('SAVE', JSON.stringify(saveDetails));
-      Alert.alert('Signup Successful');
-      console.log(saveDetails);
-      navigation.navigate('Login');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const isDarkMode = useColorScheme() === 'dark';
+  const {Signup} = useContext(AuthContext);
+
+  const handleSignup = () => {
+    Signup(fullName, email, password);
+    navigation.navigate('Login');
+  };
   return (
     <SafeAreaView style={styles.body}>
       <StatusBar barStyle={isDarkMode ? 'dark-content' : 'dark-content'} />
@@ -168,7 +118,7 @@ const SignupPage = ({navigation}) => {
             <TouchableOpacity
               style={styles.loginButton}
               disabled={!check}
-              onPress={() => submit()}>
+              onPress={() => handleSignup()}>
               <Text style={styles.loginText}>SIGN UP</Text>
               <Image
                 style={styles.buttonImage}
