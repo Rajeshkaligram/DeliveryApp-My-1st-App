@@ -11,7 +11,6 @@ import {
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TextInput} from 'react-native-gesture-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useContext} from 'react';
 import {AuthContext} from '../../Context/AuthContext';
 // import {useRoute} from '@react-navigation/native';

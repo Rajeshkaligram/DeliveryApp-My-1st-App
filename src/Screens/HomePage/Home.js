@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 // import {useRoute} from '@react-navigation/native';
 import {
   View,
@@ -17,7 +17,6 @@ import {useSelector} from 'react-redux';
 const MenuExample = ({navigation}) => {
   const AddItems = useSelector(state => state);
   const [search, setSearch] = useState('');
-
   return (
     <SafeAreaView
       style={[

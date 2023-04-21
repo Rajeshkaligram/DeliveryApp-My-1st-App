@@ -8,8 +8,8 @@ export const AuthProvider = ({children}) => {
   const [Loading, SetLoading] = useState(false);
   const [UserToken, SetUserToken] = useState(null);
   const [userInfo, SetUserInfo] = useState({});
-
-  const Signup = (fullName, email, password) => {
+  
+  const Signup = async (fullName, email, password) => {
     SetLoading(true);
     axios
       .post('https://wtsacademy.dedicateddevelopers.us/api/user/signup', {
@@ -31,7 +31,7 @@ export const AuthProvider = ({children}) => {
     SetLoading(false);
   };
 
-  const Login = (email, password) => {
+  const Login = async (email, password) => {
     SetLoading(true);
     axios
       .post('https://wtsacademy.dedicateddevelopers.us/api/user/signin', {
@@ -40,10 +40,12 @@ export const AuthProvider = ({children}) => {
       })
       .then(response => {
         let userInfo = response.data;
+        if (userInfo.token) {
+          SetUserToken(userInfo.token);
+          AsyncStorage.setItem('UserToken', userInfo.token);
+        }
         SetUserInfo(userInfo);
-        SetUserToken(userInfo.token);
         AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
-        AsyncStorage.setItem('UserToken', userInfo.token);
         Alert.alert(userInfo.message);
         console.log(userInfo);
       })
@@ -52,7 +54,7 @@ export const AuthProvider = ({children}) => {
       });
     SetLoading(false);
   };
-  const LogOut = () => {
+  const LogOut = async () => {
     SetLoading(true);
     SetUserToken(null);
     AsyncStorage.removeItem('userInfo');

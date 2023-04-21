@@ -17,7 +17,7 @@ const AppNav = () => {
   }
   return (
     <Provider store={MyStore}>
-      {UserToken !== null ? <AppStack /> : <MainNavigator />}
+      {UserToken == null ? <MainNavigator /> : <AppStack />}
     </Provider>
   );
 };
